@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js" type="text/javascript"></script>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="demo">
+        <!-- 遍历数组 -->
+        <p v-for="item in ar">遍历输出{{item}}</p>
+        <!-- 遍历数组 -->
+        <ul>
+            <li v-for="(item, i) in ar1">序号:{{i}} 结果:{{item.name}}</li>
+        </ul>
+        <!-- 遍历对象 -->
+        <ol>
+            <li v-for="(val,key,index) in student">
+                <span>值是： {{ val }} --- 键是： {{key}} -- 索引： {{index}}</span>
+            </li>
+        </ol>
+
+        <hr>
+        <p>
+            ID:<input type="text" v-model="id"> NAME:
+            <input type="text" v-model="name">
+            <input type="button" value="添加" @click="add">
+        </p>
+        <p>
+            <ol>
+                <li v-for="item in list">
+                    <input type="checkbox" v-bind:value="item.name">{{item.name}}
+                </li>
+            </ol>
+        </p>
+
+    </div>
+
+
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#demo",
+            data() {
+                return {
+                    id: "",
+                    name: "",
+                    ar: ["a", "b", "c"],
+                    ar1: [{
+                        name: "jack",
+                        age: 20,
+                        sex: "女"
+                    }, {
+                        name: "panda",
+                        age: 26,
+                        sex: "男"
+                    }, {
+                        name: "t-mac",
+                        age: 32,
+                        sex: "男"
+                    }],
+                    student: {
+                        class: "一年级",
+                        teacherLeader: "赵老师",
+                        school: "二中"
+                    },
+                    list: [{
+                        id: 1,
+                        name: '李斯'
+                    }, {
+                        id: 2,
+                        name: '嬴政'
+                    }, {
+                        id: 3,
+                        name: '赵高'
+                    }, {
+                        id: 4,
+                        name: '韩非'
+                    }, {
+                        id: 5,
+                        name: '荀子'
+                    }]
+
+                }
+            },
+            methods: {
+                add: function() {
+                    this.list.push({
+                        id: this.id,
+                        name: this.name
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

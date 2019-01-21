@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div id="demo">
+        <input type="button" value="开始" @click="move">
+        <input type="button" value="停止" @click="stop">
+        <h2 v-text="mes"></h2>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#demo",
+            data() {
+                return {
+                    mes: "陕西省西安市网是科技有限公司",
+                    timeID: null
+                }
+            },
+            methods: {
+                move: function() {
+                    if (this.timeID != null) {
+                        clearInterval(this.timeID)
+                    }
+
+                    var that = this;
+                    this.timeID = setInterval(function() {
+                        //var start = that.mes.substring(0, 1);
+                        var end = that.mes.substring(1);
+                        //console.log(start);
+                        console.log(end);
+                        that.mes = end;
+                    }, 200)
+                },
+                stop: function() {
+                    clearInterval(this.timeID);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
